@@ -1,5 +1,8 @@
 # Networking Environment with Active Directory (Simulating a Corporate Network)
 
+##Network Diagram
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20215640.png)
+
 1. **Download an ISO file for Windows Server 2019 and Windows 10.**
 
 2. **Download VirtualBox and Extension Pack.**
@@ -32,6 +35,7 @@
                 - IP address: `172.16.0.1`
                 - Subnet Mask: `255.255.255.0`
                 - DNS: `127.0.0.1` (loopback address)
+    ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20150447.png)
 
     *No default gateway is needed; the Domain Controller (DC) will serve this purpose with its 2 NICs (Network Interface Controllers).*
 
@@ -90,6 +94,7 @@
             - Router: `172.16.0.1` (Default Gateway)
                 - Add
             - DC: `mydomain.com`
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20150425.png)
     - Authorize and Refresh
     - Download the script to add users using Powershell
     - Note: The default browser of Internet Explorer was outdated, causing the sites to not load. To avoid this, I installed Google Chrome onto the VM. Then went to the file location and downloaded the zip file.
@@ -99,7 +104,7 @@
     - Name file = 1000 random names
         - Add your name to the file
         - Save
-
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20154333.png)
 - **Open Powershell ISE, run as administrator**
     - Open the script
     - Enable execution of Powershell scripts
@@ -108,9 +113,10 @@
         - Go to the directory of where the script is
             Input: `cd C:\Users\a-mmanriquez\Desktop\AD_PS-master`
     - Press play on the script window
+  ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20160302.png)
     - Go to Active Directory Users and Computers
         *You will now see a folder named "_USERS" and inside will be the users created by the Powershell script.*
-
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20160522.png)
 - **Create VM Windows 10, that uses its own NIC**
     - Name: `Client1`
     *If you have enough RAM, give it `4096mb (4GB)`*
@@ -119,16 +125,19 @@
         - Shared Clipboard, and Drag’n’Drop: Bidirectional
         - Network: Adapter 1 to Internal Network 
         *This is to mimic a corporate network environment, where you have users added to the company’s Active Directory. Then you can control and adjust permissions, and enable/disable users as needed.*
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20161047.png)
     - Open the client
         - Add the ISO of Windows 10
         - Go through configuration, for passkey, click `don’t have one`
         - Use Windows 10 Pro
+  ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20165540.png)
         - Custom install
         - Connect with no internet
         - Limited features
         - Name: `user`
         - No password
-
+      
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20221023.png)
     - **Check the VM has internet connection**
         - Command line
             Input: `ipconfig`
@@ -143,15 +152,17 @@
             - Right click on `dc.mydomain.com`
                 - All tools
                 - Restart
-        SCREENSHOT
-
+    ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20175036.png)
     - Go back to Client1
         - Command prompt
         - Input: `ipconfig /renew`
         *You should now have a default gateway*
         Input: `ping www.google.com`
         *If it resolves, then you should have a connection established*
-    SCREENSHOT
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20203714.png)
+*NOTE: I could not get the internal network to function properly until I disabled Microsoft Defender on my pc while completing the project, that fixed the communication issues with the DC and the CLIENT1 internal network. 
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20202558.png)
+*Enable Microsoft Defender after, please don't forget!
     - Rename the computer
         - Right click Windows
         - System
@@ -162,18 +173,17 @@
             - Computer Name/Domain Changes
                 - User: `mmanriquez`
                 - Password: `password1`
-
     - **Go back to the DC**
         - DHCP server
             - Select Address Leases
             *You will see your client computer there.*
-
-SCREENSHOT
     - Now go to Active Directory Users and Computers
         - Computers
         *The `CLIENT1` computer will be there as well*
     - Go to the CLIENT1 VM
 *As proof of concept, you can log in as any other user from the `names.txt` file with Password: `Password1`*
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20205718.png)
+![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20205826.png)
 
 **Conclusion:** On the `CLIENT1` Virtual Machine, you can now see and use it as if you were an employee on a corporate network. That VM is under the domain controller, and it all routes through the DC. If you wanted to expand on this project, you could apply Group Policies, Firewall, and much more that users would have to abide by.
 
