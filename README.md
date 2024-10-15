@@ -152,38 +152,39 @@
             - Right click on `dc.mydomain.com`
                 - All tools
                 - Restart
-    ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20175036.png)
-    - Go back to Client1
-        - Command prompt
-        - Input: `ipconfig /renew`
-        *You should now have a default gateway*
-        Input: `ping www.google.com`
-        *If it resolves, then you should have a connection established*
+  ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-12%20175036.png)
+- Go back to Client1
+    - Command prompt
+    - Input: `ipconfig /renew`
+    *You should now have a default gateway*
+    Input: `ping www.google.com`
+    *If it resolves, then you should have a connection established*
 ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20203714.png)
-*NOTE: I could not get the internal network to function properly until I disabled Microsoft Defender on my pc while completing the project, that fixed the communication issues with the DC and the CLIENT1 internal network. 
+*NOTE: I could not get the internal network to function properly until I disabled Microsoft Defender on my pc while completing the project, that fixed the communication issues with the DC and the CLIENT1 internal network.* 
 ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20202558.png)
-*Enable Microsoft Defender after, please don't forget!
-    - Rename the computer
-        - Right click Windows
-        - System
-            - Rename this computer (advanced)
-            - Change…
-            - Computer name: `CLIENT1`
-            - Member of, Domain: `mydomain.com` (joining the domain)
-            - Computer Name/Domain Changes
-                - User: `mmanriquez`
-                - Password: `password1`
-    - **Go back to the DC**
-        - DHCP server
-            - Select Address Leases
-            *You will see your client computer there.*
+*Enable Microsoft Defender after, please don't forget!*
+
+- Rename the computer
+    - Right-click Windows
+    - System
+        - Rename this computer (advanced)
+        - Change…
+        - Computer name: `CLIENT1`
+        - Member of, Domain: `mydomain.com` (joining the domain)
+        - Computer Name/Domain Changes
+            - User: `mmanriquez`
+            - Password: `password1`
+- **Go back to the DC**
+    - DHCP server
+        - Select Address Leases
+        *You will see your client computer there.*
     - Now go to Active Directory Users and Computers
         - Computers
-        *The `CLIENT1` computer will be there as well*
+        *The CLIENT1 computer will be there as well*
     - Go to the CLIENT1 VM
-*As proof of concept, you can log in as any other user from the `names.txt` file with Password: `Password1`*
+
+*As proof of concept, you can log in as any other user from the names.txt file with Password: `Password1`*
 ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20205718.png)
 ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20205826.png)
 
-**Conclusion:** On the `CLIENT1` Virtual Machine, you can now see and use it as if you were an employee on a corporate network. That VM is under the domain controller, and it all routes through the DC. If you wanted to expand on this project, you could apply Group Policies, Firewall, and much more that users would have to abide by.
-
+**Conclusion:** On the CLIENT1 Virtual Machine, you can now see and use it as if you were an employee on a corporate network. That VM is under the domain controller, and it all routes through the DC. If you wanted to expand on this project, you could apply Group Policies, Firewall, and much more that users would have to abide by.
