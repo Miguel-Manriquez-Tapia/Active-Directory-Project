@@ -1,6 +1,5 @@
 # Networking Environment with Active Directory (Simulating a Corporate Network)
-
-##Network Diagram
+Network Diagram
 ![image alt](https://github.com/Miguel-Manriquez-Tapia/Active-Directory-Project/blob/main/images/Screenshot%202024-10-14%20215640.png)
 
 1. **Download an ISO file for Windows Server 2019 and Windows 10.**
